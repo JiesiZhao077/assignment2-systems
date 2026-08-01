@@ -62,6 +62,9 @@ def _test_flash_forward_pass(impl, device="cpu", is_causal=False):
 def test_flash_forward_pass_pytorch():
     _test_flash_forward_pass(get_flashattention_autograd_function_pytorch().apply)
 
+def test_flash_forward_pass_pytorch_mask():
+    _test_flash_forward_pass(get_flashattention_autograd_function_pytorch().apply, is_causal=True)
+
 
 @pytest.mark.skipif(
     not torch.cuda.is_available(),
